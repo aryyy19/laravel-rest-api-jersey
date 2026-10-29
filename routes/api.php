@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\ComplaintController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -20,4 +21,7 @@ Route::get('/profile', [AuthController::class, 'profile'])
     ->middleware('auth:sanctum');
 
 Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth:sanctum');
+
+Route::apiResource('complaints', ComplaintController::class)
     ->middleware('auth:sanctum');
